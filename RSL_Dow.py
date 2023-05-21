@@ -22,13 +22,14 @@ def RSI(array, lag, duration):
     down[down<0]=0
     down=sum(down)/duration
     return up/(up+down)
+
 dicto={}
 
 for tikr in tickers:
-  data= get_data(tikr, start_date="03/01/2023", end_date="05/10/2023", index_as_date = True, interval="1d")
+  data= get_data(tikr, start_date="03/01/2023", end_date="05/12/2023", index_as_date = True, interval="1d")
   data=np.array(data['adjclose'])
   if len(data)>32:
-   if RSI(data,1,30)<0.4:
+   if RSI(data,1,30)<0.35:
       dicto[tikr]=RSI(data,1,30)
      
 
